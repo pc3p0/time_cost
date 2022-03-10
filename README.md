@@ -1,2 +1,2 @@
-# Money Time
-The value of your time...based on your income.
+# Time Cost
+Those seemingly insignificant purchases may be costing you more than you think.

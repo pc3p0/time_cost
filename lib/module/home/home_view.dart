@@ -25,8 +25,14 @@ class _HomeViewState extends State<HomeView> {
 
   /// The default Widget to display as the SliverAppBar title.
   static const _resultsPlaceholderWidget = Text(
-      'Complete the relevant fields below, to see how much of your time that next purchase will cost you!');
+    'Complete the relevant fields below, to see how much of your time that next purchase will cost you!',
+    textAlign: TextAlign.center,
+    style: TextStyle(fontSize: 16, color: Colors.white),
+  );
   Widget _resultsWidget = _resultsPlaceholderWidget;
+
+  static const String _defaultTitleText = 'What\'s your time cost?';
+  String _titleText = _defaultTitleText;
 
   bool _enableSalary = true;
   bool _enableHourly = true;
@@ -48,10 +54,15 @@ class _HomeViewState extends State<HomeView> {
     super.initState();
   }
 
+  void _updateTitleText(String newTitle) {
+    setState(() {
+      _titleText = newTitle;
+    });
+  }
+
   /// Update `_titleWidget`.
   void _updateResultsWidget(Widget newText) {
     setState(() {
-      // _resultsText = newText;
       _resultsWidget = newText;
     });
   }
@@ -67,8 +78,18 @@ class _HomeViewState extends State<HomeView> {
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         appBar: AppBar(
-          centerTitle: true,
-          title: const Text('Tempus Fugit'),
+          title: AnimatedSize(
+            duration: const Duration(milliseconds: 300),
+            child: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 300),
+              child: Text(
+                _titleText,
+                key: ValueKey<String>(_titleText),
+                style: const TextStyle(fontSize: 18),
+              ),
+            ),
+          ),
+          elevation: 0,
         ),
         body: SingleChildScrollView(
           child: Container(
@@ -79,6 +100,13 @@ class _HomeViewState extends State<HomeView> {
               children: <Widget>[
                 Container(
                   alignment: Alignment.center,
+                  decoration: const BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(32),
+                      bottomRight: Radius.circular(32),
+                    ),
+                  ),
                   padding: const EdgeInsets.symmetric(
                     horizontal: 24,
                     vertical: 32,
@@ -93,12 +121,8 @@ class _HomeViewState extends State<HomeView> {
                     ),
                   ),
                 ),
-                const Divider(
-                  indent: 16,
-                  endIndent: 16,
-                ),
                 Container(
-                  padding: const EdgeInsets.symmetric(vertical: 24),
+                  padding: const EdgeInsets.symmetric(vertical: 32),
                   child: PageForm(
                     controller: _controller,
                     formKey: _formKey,
@@ -116,8 +140,10 @@ class _HomeViewState extends State<HomeView> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     TextButton(
-                      onPressed: () =>
-                          _updateResultsWidget(_resultsPlaceholderWidget),
+                      onPressed: () {
+                        _updateResultsWidget(_resultsPlaceholderWidget);
+                        _updateTitleText(_defaultTitleText);
+                      },
                       child: const Text('Clear'),
                     ),
                     ElevatedButton(
@@ -180,7 +206,10 @@ class _HomeViewState extends State<HomeView> {
       var rw = RichText(
         text: TextSpan(
           text: costInHours,
-          style: theme.textTheme.displayMedium,
+          style: TextStyle(
+            fontSize: theme.textTheme.displayMedium?.fontSize,
+            color: theme.colorScheme.onPrimary,
+          ),
           children: const [
             TextSpan(
               text: ' Hours',
@@ -191,6 +220,7 @@ class _HomeViewState extends State<HomeView> {
       );
 
       _updateResultsWidget(rw);
+      _updateTitleText('A purcahse of \$${data.purchaseCost} will cost you');
     }
   }
 

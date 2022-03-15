@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:money_time/global_widgets/page_form.dart';
+import 'package:money_time/module/home/local_widgets/page_form.dart';
 
-import '../model/time_value_analysis.dart';
-import 'content_view_controller.dart';
+import '../../model/time_value_analysis.dart';
+import 'home_view_controller.dart';
 
-class ContentView extends StatefulWidget {
-  const ContentView({Key? key}) : super(key: key);
+class HomeView extends StatefulWidget {
+  const HomeView({Key? key}) : super(key: key);
 
   @override
-  State<ContentView> createState() => _ContentViewState();
+  State<HomeView> createState() => _HomeViewState();
 }
 
-class _ContentViewState extends State<ContentView> {
+class _HomeViewState extends State<HomeView> {
   /// An example controller for performing logic.
-  final _controller = ContentViewController();
+  final _controller = HomeViewController();
 
   final _formKey = GlobalKey<FormState>();
 
@@ -122,7 +122,7 @@ class _ContentViewState extends State<ContentView> {
                     ),
                     ElevatedButton(
                       onPressed: () => _showAnalysis(theme),
-                      child: const Text('Get Analysis'),
+                      child: const Text('Show Me'),
                     ),
                   ],
                 ),

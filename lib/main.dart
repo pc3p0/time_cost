@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'module/content_view.dart';
+import 'module/home/home_view.dart';
 
 void main() {
   runApp(const AppRoot());
@@ -13,13 +13,13 @@ class AppRoot extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Money Time',
+      title: 'Time Cost',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       initialRoute: '/',
       routes: {
-        '/': (_) => const ContentView(),
+        '/': (_) => const HomeView(),
       },
     );
   }

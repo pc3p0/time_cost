@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../module/content_view_controller.dart';
+import '../home_view_controller.dart';
 import 'custom_form_field.dart';
 
 class PageForm extends StatelessWidget {
@@ -17,7 +17,7 @@ class PageForm extends StatelessWidget {
     required this.weeksPerYearController,
   }) : super(key: key);
 
-  final ContentViewController controller;
+  final HomeViewController controller;
   final GlobalKey<FormState> formKey;
   final bool enableSalary;
   final bool enableHourly;

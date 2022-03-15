@@ -1,7 +1,7 @@
 import 'package:money_time/model/time_value_analysis.dart';
 
 /// An example Controller for `ContentView`.
-class ContentViewController {
+class HomeViewController {
   String? validatePurchaseCost(String? str) =>
       (str == null || str.isEmpty) ? 'Enter purchase cost' : null;
 
@@ -48,13 +48,13 @@ class ContentViewController {
         purchaseCost: purchaseCost,
       );
     } else {
-      // Calculate for salaried individuals.
+      // Calculate for hourly individuals.
       if (rate != null && hoursPerWeek != null && weeksPerYear != null) {
         var rateToNum = double.parse(rate);
         var hoursPerWeekToNum = double.parse(hoursPerWeek);
         var weeksPerYearToNum = double.parse(weeksPerYear);
 
-        // Convert hourly rate to equivalent salary spread over a fulll year.
+        // Convert hourly rate to equivalent salary spread over a full year.
         var equivalentSalary =
             ((weeksPerYearToNum * hoursPerWeekToNum) * rateToNum);
 

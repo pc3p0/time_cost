@@ -1,7 +1,7 @@
 # Time Cost
 What is your time worth to you?
 
-Those seemingly insignificant purchases may be costing you more than you think.
+Those seemingly insignificant purchases may be costing you more than you think!
 
 Given your income data (salary or hourly based) and a potential purchase cost, see how much of your time that purchase will cost you.
 
